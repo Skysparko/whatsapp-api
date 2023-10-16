@@ -29,12 +29,13 @@ app.get('/login', async (req, res) => {
     if (!client) {
         try {
             client = await venom.create('session', (base64Qr, asciiQR, attempts, urlCode) => {
-                console.log(asciiQR);
                 res.status(201).send({ base64Qr, asciiQR, attempts, urlCode });
+
             }, (status) => {
                 console.log(status);
             }, {
                 headless: 'new',
+                autoClose: false
             });
         } catch (error) {
             res.status(500).send("Error while creating the client.");
@@ -151,7 +152,7 @@ app.post('/send/document', upload.single('document'), async (req, res) => {
     }
 });
 
-const port = 3000;
+const port = 8080;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
