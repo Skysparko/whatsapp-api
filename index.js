@@ -25,7 +25,7 @@ const upload = multer({
     storage: storage,
 });
 let client;
-app.post('/login', async (req, res) => {
+app.get('/login', async (req, res) => {
     if (!client) {
         try {
             client = await venom.create('session', (base64Qr, asciiQR, attempts, urlCode) => {
