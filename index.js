@@ -35,7 +35,8 @@ app.get('/login', async (req, res) => {
                 console.log(status);
             }, {
                 headless: 'new',
-                autoClose: false
+                autoClose: false,
+                browserPathExecutable: ''
             });
         } catch (error) {
             res.status(500).send("Error while creating the client.");
